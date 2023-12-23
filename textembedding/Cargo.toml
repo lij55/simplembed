@@ -1,0 +1,18 @@
+[package]
+name = "textembedding"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.76"
+headers = { version = "0.4.0", features = [] }
+reqwest = { version = "0.11.23", features = ["blocking", "json"] }
+serde_json = "1.0.108"
+time = "0.3.31"
+candle-core = {  version = "0.3.2", package = "candle-core" }
+candle-nn = {  version = "0.3.2" }
+candle-transformers = {  version = "0.3.2" }
+tokenizers = { version = "0.15.0", features = ["onig"] }
+hf-hub = {version = "0.3.2"}
