@@ -12,3 +12,15 @@ edition = "2021"
 [dependencies]
 textembedding = { path = "textembedding" }
 
+anyhow = "1.0.76"
+headers = { version = "0.4.0", features = [] }
+reqwest = { version = "0.11.23", features = ["blocking", "json"] }
+serde_json = "1.0.108"
+time = "0.3.31"
+candle-core = {  version = "0.3.2", package = "candle-core" }
+candle-nn = {  version = "0.3.2" }
+candle-transformers = {  version = "0.3.2" }
+tokenizers = { version = "0.15.0", features = ["onig"] }
+hf-hub = {version = "0.3.2"}
+clap = "4.4.11"
+image = { version = "0.24.7", default-features = false, features = ["jpeg", "png"] }
