@@ -26,8 +26,6 @@ use crate::embeddings::Embeddings;
 use reqwest::header::{HeaderMap, HeaderName, HeaderValue, CONTENT_TYPE, USER_AGENT};
 use serde_json::Value;
 use std::collections::HashMap;
-use std::default::Default;
-use std::hash::Hash;
 use anyhow::{Error, Result};
 
 
@@ -106,7 +104,6 @@ mod tests {
         let bc = BaiChuan::new(mysecret);
         let result = bc.embedding("hello");
         assert!(result.is_ok());
-
 
     }
     #[test]
