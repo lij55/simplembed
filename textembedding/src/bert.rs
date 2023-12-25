@@ -150,7 +150,7 @@ mod tests {
      */
     #[test]
     fn local_bert() {
-        let b = LocalBert::from( String::from("./test_cache/gte-small")).unwrap();
+        let b = LocalBert::from( String::from("./test_cache/gte-small")).expect("failed to open 'test_cache/gte-small'");
         let result = b.embedding("hello");
 
         assert!(result.is_ok());
