@@ -1,19 +1,11 @@
-[workspace]
-
-members = [
-    "textembedding",
-    "visual"
-]
-
 [package]
-name = "simplembed"
+name = "visual"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-textembedding = { path = "textembedding" }
-visual = { path = "visual" }
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[dependencies]
 anyhow = "1.0.76"
 headers = { version = "0.4.0", features = [] }
 reqwest = { version = "0.11.23", features = ["blocking", "json"] }
@@ -24,5 +16,4 @@ candle-nn = {  version = "0.3.2" }
 candle-transformers = {  version = "0.3.2" }
 tokenizers = { version = "0.15.0", features = ["onig"] }
 hf-hub = {version = "0.3.2"}
-clap = "4.4.11"
 image = { version = "0.24.7", default-features = false, features = ["jpeg", "png"] }
