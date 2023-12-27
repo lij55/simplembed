@@ -8,7 +8,7 @@ use std::path::PathBuf;
 use tokenizers::{Tokenizer};
 use std::path::Path;
 
-use crate::embeddings::Embeddings;
+use util::Embeddings;
 pub struct Bert {
     tokenizer:  Tokenizer,
     model: BertModel
@@ -24,7 +24,7 @@ impl Bert {
     }
 }
 
-impl Embeddings for Bert {
+impl Embeddings<str> for Bert {
     fn embedding(&self, text: &str) -> Result<Vec<f32>> {
         do_embedding(text, &self.model, self.tokenizer.clone())
     }
@@ -45,7 +45,7 @@ impl crate::bert::LocalBert {
     }
 }
 
-impl Embeddings for crate::bert::LocalBert {
+impl Embeddings<str> for crate::bert::LocalBert {
     fn embedding(&self, text: &str) -> Result<Vec<f32>> {
         do_embedding(text, &self.model, self.tokenizer.clone())
     }
