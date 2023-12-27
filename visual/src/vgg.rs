@@ -6,7 +6,7 @@ use candle_transformers::models::vgg::{Models, Vgg as VggModel};
 use anyhow::{Error, Result};
 
 
-enum Which {
+pub enum Which {
     Vgg13,
     Vgg16,
     Vgg19,
