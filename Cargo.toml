@@ -1,8 +1,10 @@
 [workspace]
 
 members = [
-    "textembedding",
-    "visual"
+    "sentence",
+    "visual",
+    "util",
+    "pgem"
 ]
 
 [package]
@@ -11,8 +13,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-textembedding = { path = "textembedding" }
+sentence = { path = "sentence" }
 visual = { path = "visual" }
+util = {path = "util"}
 
 anyhow = "1.0.76"
 headers = { version = "0.4.0", features = [] }

@@ -22,7 +22,7 @@ response format:
 }
  */
 
-use crate::embeddings::Embeddings;
+use util::Embeddings;
 use reqwest::header::{HeaderMap, HeaderName, HeaderValue, CONTENT_TYPE, USER_AGENT};
 use serde_json::Value;
 use std::collections::HashMap;
@@ -44,7 +44,7 @@ impl BaiChuan {
     }
 }
 
-impl Embeddings for BaiChuan {
+impl Embeddings<str> for BaiChuan {
      fn embedding(&self, text: &str) -> Result<Vec<f32>> {
         let mut headers = HeaderMap::new();
         headers.insert(USER_AGENT, HeaderValue::from_static("pdbembedding"));

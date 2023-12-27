@@ -1,0 +1,5 @@
+comment = 'pgem:  Created by pgrx'
+default_version = '@CARGO_VERSION@'
+module_pathname = '$libdir/pgem'
+relocatable = false
+superuser = true
