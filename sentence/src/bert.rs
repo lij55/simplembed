@@ -144,13 +144,13 @@ mod tests {
 
     }
     /*
-    run git clone https://huggingface.co/thenlper/gte-small test_cache/gte-small to prepare local model folder
+    run git clone https://huggingface.co/thenlper/gte-small sentence/test_cache/gte-small to prepare local model folder
     `git lfs update` might be needed for some old git versions
 
      */
     #[test]
     fn local_bert() {
-        let b = LocalBert::from( String::from("./test_cache/gte-small")).expect("failed to open 'test_cache/gte-small'");
+        let b = LocalBert::from( String::from("test_cache/gte-small")).expect("failed to open 'test_cache/gte-small'");
         let result = b.embedding("hello");
 
         assert!(result.is_ok());

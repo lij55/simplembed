@@ -1,4 +1,5 @@
 use util::Embeddings;
+
 //use crate::embeddings::Embeddings;
 use candle_core::{Device, DType, IndexOp, D, Tensor};
 use candle_nn::{ModuleT, VarBuilder};
@@ -67,17 +68,11 @@ impl<'a> Embeddings<Vec<u8>> for Vgg<'a>  {
 }
 
 
-pub fn load_image224<P: AsRef<std::path::Path>>(p: P) -> Result<Vec<u8>> {
-    let img = image::io::Reader::open(p)?
-        .decode()?
-        .resize_to_fill(224, 224, image::imageops::FilterType::Triangle);
-    let img = img.to_rgb8();
-    Ok(img.into_raw())
-}
 
 #[cfg(test)]
 mod tests {
     use crate::vgg::Which::Vgg16;
+    use crate::load_image224;
     use super::*;
 
     #[test]
