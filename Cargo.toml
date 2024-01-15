@@ -13,7 +13,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-sentence = { path = "sentence" }
+#sentence = { path = "sentence" }
 visual = { path = "visual" }
 util = {path = "util"}
 
@@ -29,3 +29,6 @@ tokenizers = { version = "0.15.0", features = ["onig"] }
 hf-hub = {version = "0.3.2"}
 clap = "4.4.11"
 image = { version = "0.24.7", default-features = false, features = ["jpeg", "png"] }
+
+ort = {version = "2.0.0-alpha.4"}
+ndarray = {version = "0.15.6"}
