@@ -5,8 +5,35 @@ use visual::vgg::Vgg;
 use visual::load_image224;
 use visual::vgg::Which::Vgg16;
 use std::sync::{OnceLock, Mutex};
+use wide::f32x8;
 
 pgrx::pg_module_magic!();
+
+#[pg_extern]
+fn distl2(vec1: Array<f32>, vec2: Array<f32>) -> f32 {
+    let mut sum = f32x8::splat(0.0); // 初始化 SIMD 累加器
+
+    // 每次处理 8 个元素
+    for i in (0..vec1.len()).step_by(8) {
+        // 使用 SIMD 向量加载每 8 个元素
+        let simd1 = f32x8::from([
+            vec1.get(i).unwrap().unwrap(), vec1.get(i + 1).unwrap().unwrap(), vec1.get(i + 2).unwrap().unwrap(), vec1.get(i + 3).unwrap().unwrap(),
+            vec1.get(i + 4).unwrap().unwrap(), vec1.get(i + 5).unwrap().unwrap(), vec1.get(i + 6).unwrap().unwrap(), vec1.get(i + 7).unwrap().unwrap(),
+        ]);
+        let simd2 = f32x8::from([
+            vec2.get(i).unwrap().unwrap(), vec2.get(i + 1).unwrap().unwrap(), vec2.get(i + 2).unwrap().unwrap(), vec2.get(i + 3).unwrap().unwrap(),
+            vec2.get(i + 4).unwrap().unwrap(), vec2.get(i + 5).unwrap().unwrap(), vec2.get(i + 6).unwrap().unwrap(), vec2.get(i + 7).unwrap().unwrap(),
+        ]);
+
+        // 计算差值并累加平方差
+        let diff = simd1 - simd2;
+        sum += diff * diff; // 累加平方差
+    }
+
+
+    // 对所有元素求和并计算平方根
+    sum.reduce_add().sqrt()
+}
 
 #[pg_extern]
 fn pgem_text(c: &str) -> Vec<f32> {

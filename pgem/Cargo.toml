@@ -4,10 +4,14 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "lib"]
+
+[[bin]]
+name = "pgrx_embed_pgem"
+path = "./src/bin/pgrx_embed.rs"
 
 [features]
-default = ["pg15"]
+default = ["pg16"]
 
 pg14 = ["pgrx/pg14", "pgrx-tests/pg14" ]
 pg15 = ["pgrx/pg15", "pgrx-tests/pg15" ]
@@ -15,19 +19,20 @@ pg16 = ["pgrx/pg16", "pgrx-tests/pg16" ]
 pg_test = []
 
 [dependencies]
-pgrx = "=0.11.2"
+pgrx = ">=0.12.5"
 sentence = { path = "../sentence" }
 visual = { path = "../visual" }
 util = { path = "../util"}
+wide = {version = "0.7.32"}
 
 [dev-dependencies]
-pgrx-tests = "=0.11.2"
+pgrx-tests = ">=0.12.5"
 
-#[profile.dev]
-#panic = "unwind"
-#
-#[profile.release]
-#panic = "unwind"
-#opt-level = 3
-#lto = "fat"
-#codegen-units = 1
+[profile.dev]
+panic = "unwind"
+
+[profile.release]
+panic = "unwind"
+opt-level = 3
+lto = "fat"
+codegen-units = 1
